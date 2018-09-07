@@ -22,9 +22,13 @@
 
         <!-- 引用组件 -->
         <!-- 结算主产品 -->
-        <hscs.version>2.0.0-SNAPSHOT</hscs.version>
+        <hscs.version>2.1.0-SNAPSHOT</hscs.version>
         <!-- 会计引擎 -->
         <hsae.version>1.0.0-SNAPSHOT</hsae.version>
+        <!-- 通用接口 -->
+        <hitf.version>3.1.1-SNAPSHOT</hitf.version>
+        <!-- 结算规则 -->
+        <hscr.version>2.0.0-SNAPSHOT</hscr.version>
 
     </properties>
     <distributionManagement>

@@ -6,12 +6,6 @@
                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
 
-    <!-- redis缓存list by 陈新凯  at 2017年06月13日 14:49:00 -->
-    <bean id="functionSavaList" class="hscs.utils.service.FunctionSavaList">
-        <property name="name" value="function_save_list"/>
-    </bean>
-
-
     <!-- Root Context: defines shared resources visible to all other web components -->
 
     <!-- 引入config.properties属性文件 -->
@@ -216,6 +210,51 @@
         </property>
     </bean>
 
+    <!-- 结算缓存配置add -->
+    <!--接口模块缓存 begin-->
+    <bean id="jsonFilter" class="hitf.itf.cache.filter.HitfJsonFilter"></bean>
+    <bean id="definationLovValueCache" class="hitf.itf.cache.DefinationLovValueCache">
+        <property name="name" value="hscs_itf.dlovData"/>
+        <property name="loadOnStartUp" value="true"/>
+    </bean>
+    <bean id="itfRuleHeaders" class="hitf.itf.cache.ItfRuleHeadersCache">
+        <property name="name" value="hscs_itf.rhData"/>
+        <property name="loadOnStartUp" value="true"/>
+    </bean>
+    <bean id="itfDefinationHeaders" class="hitf.itf.cache.DefinationHeadersCache">
+        <property name="name" value="hscs_itf.idData"/>
+        <property name="loadOnStartUp" value="true"/>
+    </bean>
+    <bean id="MappingDataValueCache" class="hitf.itf.cache.MappingDataValueCache">
+        <property name="name" value="hscs_itf.MappingDataValue"/>
+        <property name="type" value="java.lang.String"/>
+    </bean>
+    <bean id="ItfFilterDataCache" class="hitf.itf.cache.ItfFilterDataCache">
+        <property name="name" value="hscs_itf.itfFilterDataCache"/>
+        <property name="loadOnStartUp" value="true"/>
+    </bean>
+    <bean id="ItfMappingDataCache" class="hitf.itf.cache.ItfMappingCache">
+        <property name="name" value="hscs_itf.itfMappingDataCache"/>
+        <property name="loadOnStartUp" value="true"/>
+    </bean>
+    <bean id="itfScheduleCache" class="hitf.itf.cache.ItfScheduleCache">
+        <property name="name" value="hscs_itf_scheduleCache"/>
+        <property name="type" value="java.lang.String"/>
+        <property name="loadOnStartUp" value="true"/>
+    </bean>
+    <!--接口3.1新增缓存-->
+    <bean id="primaryKeyCache" class="hitf.itf.cache.PrimaryKeyCache">
+        <property name="name" value="primary_key:minus"/>
+        <property name="category" value="hscs"/>
+        <property name="loadOnStartUp" value="true"/>
+    </bean>
+    <!--接口模块缓存 end-->
+
+    <!-- redis缓存list by 陈新凯  at 2017年06月13日 14:49:00 -->
+    <bean id="functionSavaList" class="hscs.utils.service.FunctionSavaList">
+        <property name="name" value="function_save_list"/>
+    </bean>
+
     <!--Ae模块相关缓存 add by hand-->
     <bean id="aeSourceSqlCache" class="hsae.ae.cache.AeSourceSqlCache">
         <property name="category" value="hsae:cache"/>
@@ -261,6 +300,51 @@
 
     <bean id="aePeriodCache" class="hsae.ae.cache.AePeriodCache"></bean>
     <!--Ae模块相关缓存 end -->
+
+    <!-- 通用规则缓存add -->
+    <!--生成规则相关缓存 begin-->
+    <bean id="crJsonFilter" class="hscr.cr.cache.filter.CrJsonFilter"></bean>
+
+    <!--将接口定义头表的数据存入redis-->
+    <bean id="crItfDefineData" class="hscr.cr.cache.CrItfDefineCache">
+        <property name="name" value="hscr_cr.itfDefineHeaderLines"/>
+    </bean>
+
+    <!--将映射头行数据存入redis-->
+    <bean id="crMappingDataCache" class="hscr.cr.cache.CrMappingCache">
+        <property name="name" value="hscr_cr.mappingHeaderLines"/>
+    </bean>
+
+    <!--将映射值存入redis-->
+    <bean id="crMappingValueCache" class="hscr.cr.cache.CrMappingValueCache">
+        <property name="name" value="hscr_cr.mappingValue"/>
+    </bean>
+
+    <!--将筛选组的数据存入redis-->
+    <bean id="crFilterDataCache" class="hscr.cr.cache.CrFilterCache">
+        <property name="name" value="hscr_cr.filterHeaderLines"/>
+    </bean>
+
+    <!--计算程序存入redis-->
+    <bean id="crCalculateCache" class="hscr.cr.cache.CrCalculateCache">
+        <property name="name" value="hscr_cr.calculateHeaderLines"/>
+    </bean>
+
+    <!--程序包存入redis-->
+    <bean id="crProgramCache" class="hscr.cr.cache.CrProgramCache">
+        <property name="name" value="hscr_cr.crProgramHeader"/>
+    </bean>
+
+    <!--将数据生成规则头表存入redis,行表作为list放入头表中 yihao.xing@hand-china.com -->
+    <bean id="crRuleCache" class="hscr.cr.cache.CrRuleCache">
+        <property name="name" value="hscr_cr.crRuleHeaderLines"/>
+    </bean>
+
+    <bean id="crDefinationLovValueCache" class="hscr.cr.cache.CrDefinationLovValueCache">
+        <property name="name" value="hscr_cr.dlovData"/>
+    </bean>
+    <!--通用规则end-->
+    <!-- 结算缓存配置end -->
 
     <bean id="cacheReloadProcessor" class="com.hand.hap.cache.impl.CacheReloadProcessor">
         <property name="queue" value="queue:cache:reload"/>

@@ -21,6 +21,6 @@ databaseChangeLog(logicalFilePath: "hbi/core/db/liquibase.groovy") {
         dbType = "hana";
     }
     // 现在支持自动根据 db.url 参数检测数据库类型
-    migrationHelper.dbmigrate(dbType,["com/hand/hap","hbi/core","hscs/core","hsae/core"] ,["table", "data", "patch"])
+    migrationHelper.dbmigrate(dbType,["com/hand/hap","hbi/core","hscs/core","hsae/core","hitf /core","hscr/core"] ,["table", "data", "patch"])
 
 }

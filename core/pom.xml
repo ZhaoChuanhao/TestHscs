@@ -12,26 +12,6 @@
     <name>core</name>
     <url>http://maven.apache.org</url>
     <dependencies>
-        <!--其他依赖...-->
-        <dependency>
-            <groupId>hsae</groupId>
-            <artifactId> core</artifactId>
-            <type>war</type>
-            <version>${hsae.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>hsae</groupId>
-            <artifactId> core</artifactId>
-            <version>${hsae.version}</version>
-            <classifier>classes</classifier>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>hsae</groupId>
-            <artifactId>core-db</artifactId>
-            <version>${hsae.version}</version>
-        </dependency>
-        <!--其他依赖...-->
 
         <!--结算产品配置-->
         <dependency>
@@ -53,6 +33,70 @@
             <version>${hscs.version}</version>
         </dependency>
         <!--end-->
+
+        <!--会计引擎add-->
+        <dependency>
+            <groupId>hsae</groupId>
+            <artifactId> core</artifactId>
+            <type>war</type>
+            <version>${hsae.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>hsae</groupId>
+            <artifactId> core</artifactId>
+            <version>${hsae.version}</version>
+            <classifier>classes</classifier>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>hsae</groupId>
+            <artifactId>core-db</artifactId>
+            <version>${hsae.version}</version>
+        </dependency>
+        <!--会计引擎end-->
+
+        <!--通用接口add-->
+        <dependency>
+            <groupId>hitf</groupId>
+            <artifactId> core</artifactId>
+            <type>war</type>
+            <version>${hitf.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>hitf</groupId>
+            <artifactId> core</artifactId>
+            <version>${hitf.version}</version>
+            <classifier>classes</classifier>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>hitf</groupId>
+            <artifactId>core-db</artifactId>
+            <version>${hitf.version}</version>
+        </dependency>
+        <!--通用接口end-->
+
+        <!--结算规则add-->
+        <dependency>
+            <groupId>hscr</groupId>
+            <artifactId> core</artifactId>
+            <type>war</type>
+            <version>${hscr.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>hscr</groupId>
+            <artifactId> core</artifactId>
+            <version>${hscr.version}</version>
+            <classifier>classes</classifier>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>hscr</groupId>
+            <artifactId>core-db</artifactId>
+            <version>${hscr.version}</version>
+        </dependency>
+        <!--结算规则end-->
+
 
         <dependency>
             <groupId>junit</groupId>
@@ -132,6 +176,14 @@
                     <skip>${skipLiquibaseRun}</skip>
                 </configuration>
                 <dependencies>
+
+                    <!-- 结算主产品 -->
+                    <dependency>
+                        <groupId>hscs</groupId>
+                        <artifactId>core-db</artifactId>
+                        <version>${hscs.version}</version>
+                    </dependency>
+
                     <!-- 会计引擎 -->
                     <dependency>
                         <groupId>hsae</groupId>
@@ -139,11 +191,18 @@
                         <version>${hsae.version}</version>
                     </dependency>
 
-                    <!-- 结算主产品 -->
+                    <!-- 通用接口 -->
                     <dependency>
-                        <groupId>hscs</groupId>
+                        <groupId>hitf</groupId>
                         <artifactId>core-db</artifactId>
-                        <version>${hscs.version}</version>
+                        <version>${hitf.version}</version>
+                    </dependency>
+
+                    <!-- 结算规则 -->
+                    <dependency>
+                        <groupId>hscr</groupId>
+                        <artifactId>core-db</artifactId>
+                        <version>${hscr.version}</version>
                     </dependency>
 
                     <!-- http://mvnrepository.com/artifact/com.oracle/ojdbc14 -->
